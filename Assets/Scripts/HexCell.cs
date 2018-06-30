@@ -10,11 +10,13 @@ public class HexCell : MonoBehaviour {
 	{
         Mesh m = new Mesh();
         GetComponent<MeshFilter>().mesh = m;
-        m.vertices = [
+
+        Vector3[] vertices = {
             new Vector3(1, 0, 1),
             new Vector3(1, 0, -1),
             new Vector3(-1, 0, -1),
-            new Vector3(1, 0, 1)
-        ];
+            new Vector3(1, 0, 1),
+        };
+        m.vertices = vertices;
 	}
 }

@@ -13,8 +13,8 @@ public class HexGrid : MonoBehaviour {
 	Canvas gridCanvas;
 	//HexMesh hexMesh;
 
-	void Awake () {
-
+	private void Awake () {
+        /*
 		cells = new HexCell[height * width];
 
 		for (int z = 0, i = 0; z < height; z++) {
@@ -22,6 +22,7 @@ public class HexGrid : MonoBehaviour {
 				CreateCell(x, z, i++);
 			}
 		}
+		*/
 	}
 
 
