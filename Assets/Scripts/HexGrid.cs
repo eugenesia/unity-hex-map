@@ -18,12 +18,13 @@ public class HexGrid : MonoBehaviour {
     // Canvas containing all the text.
     Canvas gridCanvas;
 
-	private void Awake () {
+	void Awake () {
         gridCanvas = GetComponentInChildren<Canvas>();
 
 		cells = new HexCell[height * width];
 
 		for (int z = 0, i = 0; z < height; z++) {
+            Debug.Log("Z: " + z);
 			for (int x = 0; x < width; x++) {
 				CreateCell(x, z, i++);
 			}
@@ -40,5 +41,11 @@ public class HexGrid : MonoBehaviour {
 		HexCell cell = cells[i] = Instantiate<HexCell>(cellPrefab);
 		cell.transform.SetParent(transform, false);
 		cell.transform.localPosition = position;
+
+        // Set the text label on the cell.
+        Text label = Instantiate<Text>(cellLabelPrefab);
+        label.rectTransform.SetParent(gridCanvas.transform, false);
+        label.rectTransform.anchoredPosition = new Vector2(position.x, position.z);
+        label.text = x.ToString() + "\n" + z.ToString();
 	}
 }
