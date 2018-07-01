@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿/**
+ * Container and coordinator for grid elements.
+ */
+using UnityEngine;
 using UnityEngine.UI;
 
 public class HexGrid : MonoBehaviour {
@@ -8,6 +11,7 @@ public class HexGrid : MonoBehaviour {
 
 	public HexCell cellPrefab;
 
+    // Logical data for the cells.
 	HexCell[] cells;
 
 
@@ -17,6 +21,7 @@ public class HexGrid : MonoBehaviour {
     // Canvas containing all the text.
     Canvas gridCanvas;
 
+    // Display the cell shapes etc.
     HexMesh hexMesh;
 
 	void Awake () {
@@ -26,7 +31,6 @@ public class HexGrid : MonoBehaviour {
 		cells = new HexCell[height * width];
 
 		for (int z = 0, i = 0; z < height; z++) {
-            Debug.Log("Z: " + z);
 			for (int x = 0; x < width; x++) {
 				CreateCell(x, z, i++);
 			}

@@ -17,6 +17,8 @@ public static class HexMetrics {
 		new Vector3(0f, 0f, -outerRadius),
 		new Vector3(-innerRadius, 0f, -0.5f * outerRadius),
 		new Vector3(-innerRadius, 0f, 0.5f * outerRadius),
+
+        // Same as first corner - wraparound
 		new Vector3(0f, 0f, outerRadius)
 	};
 }

@@ -37,11 +37,14 @@ public class HexMesh : MonoBehaviour {
     // Create triangles for a single cell.
     void Triangulate (HexCell cell) {
         Vector3 center = cell.transform.localPosition;
-        AddTriangle(
-            center,
-            center + HexMetrics.corners[0],
-            center + HexMetrics.corners[1]
-        );        
+        // Each hex is made up of 6 triangles.
+        for (int i = 0; i < 6; i++) {
+            AddTriangle(
+                center,
+                center + HexMetrics.corners[i],
+                center + HexMetrics.corners[i + 1]
+            );        
+        }
     }
 
     // Add a triangle to the mesh, and its vertices.
