@@ -10,7 +10,6 @@ public class HexGrid : MonoBehaviour {
 
 	HexCell[] cells;
 
-    //HexMesh hexMesh;
 
     // Label for cell coords.
     public Text cellLabelPrefab;
@@ -18,8 +17,11 @@ public class HexGrid : MonoBehaviour {
     // Canvas containing all the text.
     Canvas gridCanvas;
 
+    HexMesh hexMesh;
+
 	void Awake () {
         gridCanvas = GetComponentInChildren<Canvas>();
+        hexMesh = GetComponentInChildren<HexMesh>();
 
 		cells = new HexCell[height * width];
 
@@ -49,5 +51,9 @@ public class HexGrid : MonoBehaviour {
         label.rectTransform.SetParent(gridCanvas.transform, false);
         label.rectTransform.anchoredPosition = new Vector2(position.x, position.z);
         label.text = x.ToString() + "\n" + z.ToString();
+	}
+
+	void Start() {
+        hexMesh.Triangulate(cells);
 	}
 }

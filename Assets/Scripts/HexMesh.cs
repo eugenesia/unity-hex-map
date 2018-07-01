@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿/**
+ * Represents a mesh for the entire grid.
+ */
+
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
@@ -14,4 +18,40 @@ public class HexMesh : MonoBehaviour {
         vertices = new List<Vector3>();
         triangles = new List<int>();
 	}
+
+    // Create triangles for cells.
+    public void Triangulate(HexCell[] cells)
+    {
+        hexMesh.Clear();
+        vertices.Clear();
+        triangles.Clear();
+
+        for (int i = 0; i < cells.Length; i++) {
+            Triangulate(cells[i]);
+        }
+        hexMesh.vertices = vertices.ToArray();
+        hexMesh.triangles = triangles.ToArray();
+        hexMesh.RecalculateNormals();
+    }
+
+    // Create triangles for a single cell.
+    void Triangulate (HexCell cell) {
+        Vector3 center = cell.transform.localPosition;
+        AddTriangle(
+            center,
+            center + HexMetrics.corners[0],
+            center + HexMetrics.corners[1]
+        );        
+    }
+
+    // Add a triangle to the mesh, and its vertices.
+    void AddTriangle (Vector3 v1, Vector3 v2, Vector3 v3) {
+        int vertexIndex = vertices.Count;
+        vertices.Add(v1);
+        vertices.Add(v2);
+        vertices.Add(v3);
+        triangles.Add(vertexIndex);
+        triangles.Add(vertexIndex + 1);
+        triangles.Add(vertexIndex + 2);
+    }
 }
