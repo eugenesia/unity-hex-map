@@ -37,7 +37,7 @@ public class HexGrid : MonoBehaviour {
 		}
 	}
 
-
+    // Create the logical cell, and show some label text on it.
 	void CreateCell (int x, int z, int i) {
 		Vector3 position;
 
@@ -49,12 +49,14 @@ public class HexGrid : MonoBehaviour {
 		HexCell cell = cells[i] = Instantiate<HexCell>(cellPrefab);
 		cell.transform.SetParent(transform, false);
 		cell.transform.localPosition = position;
+        // Set the hex coords of the cell.
+        cell.coordinates = HexCoordinates.FromOffsetCoordinates(x, z);
 
         // Set the text label on the cell.
         Text label = Instantiate<Text>(cellLabelPrefab);
         label.rectTransform.SetParent(gridCanvas.transform, false);
         label.rectTransform.anchoredPosition = new Vector2(position.x, position.z);
-        label.text = x.ToString() + "\n" + z.ToString();
+        label.text = cell.coordinates.ToStringOnSeparateLines();
 	}
 
 	void Start() {
