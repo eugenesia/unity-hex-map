@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿/**
+ * Precalculate useful ratios and data for hex grid calculations.
+ */
+using UnityEngine;
 
 public static class HexMetrics {
 

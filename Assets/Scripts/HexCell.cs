@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿/**
+ * The cell - contains position and other data.
+ */
+using UnityEngine;
 
 public class HexCell : MonoBehaviour {
 

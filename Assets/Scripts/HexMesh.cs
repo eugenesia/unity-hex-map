@@ -1,5 +1,5 @@
 ﻿/**
- * Represents a mesh for the entire grid.
+ * Represents a mesh for the entire grid. Just displays the grid shapes.
  */
 
 using System.Collections.Generic;
