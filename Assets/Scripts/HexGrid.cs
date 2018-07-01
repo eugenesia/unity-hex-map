@@ -10,10 +10,17 @@ public class HexGrid : MonoBehaviour {
 
 	HexCell[] cells;
 
-	Canvas gridCanvas;
-	//HexMesh hexMesh;
+    //HexMesh hexMesh;
+
+    // Label for cell coords.
+    public Text cellLabelPrefab;
+
+    // Canvas containing all the text.
+    Canvas gridCanvas;
 
 	private void Awake () {
+        gridCanvas = GetComponentInChildren<Canvas>();
+
 		cells = new HexCell[height * width];
 
 		for (int z = 0, i = 0; z < height; z++) {
