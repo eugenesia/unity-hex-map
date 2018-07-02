@@ -8,9 +8,22 @@ using UnityEngine;
 // and reload even if we change the script.
 [System.Serializable]
 public struct HexCoordinates {
+
+    // Force serialization of a private field, so we can see in Inspector in
+    // play mode.
+    [SerializeField]
+    private int x, z;
     
-    public int X { get; private set; }
-    public int Z { get; private set; }
+    public int X {
+        get {
+            return x;
+        }
+    }
+    public int Z {
+        get {
+            return z;
+        }
+    }
 
     // Y coord is redundant as X + Y + Z = 0
     // Don't store it but calculate it on demand.
@@ -21,8 +34,8 @@ public struct HexCoordinates {
     }
 
     public HexCoordinates (int x, int z) {
-        X = x;
-        Z = z;
+        this.x = x;
+        this.z = z;
     }
 
     // Convert offset coords to hex coords.
