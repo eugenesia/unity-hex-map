@@ -66,8 +66,21 @@ public struct HexCoordinates {
         int iY = Mathf.RoundToInt(y);
         int iZ = Mathf.RoundToInt(-x - y);
 
+        // Rounding error - see which coord got rounded the most, it's probably
+        // the culprit.
         if (iX + iY + iZ != 0) {
-            Debug.LogWarning("rounding error!");
+            float dX = Mathf.Abs(x - iX);
+            float dY = Mathf.Abs(y - iY);
+            float dZ = Mathf.Abs(-x -y -iZ);
+
+            // X got rounded the most, let's get X another way.
+            if (dX > dY && dX > dZ) {
+                iX = -iY - iZ;
+            }
+            // Z got rounded the most.
+            else if (dZ > dY) {
+                iZ = -iX - iY;
+            }
         }
 
         return new HexCoordinates(iX, iZ);
