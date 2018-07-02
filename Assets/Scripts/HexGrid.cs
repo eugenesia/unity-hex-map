@@ -82,16 +82,15 @@ public class HexGrid : MonoBehaviour {
         }
     }
 
+    // Handle a mouse click, raycasted to a cell.
     void TouchCell(Vector3 position) {
         // Transform position from world space to local space.
         position = transform.InverseTransformPoint(position);
-        Debug.Log("Touched position: " + position.ToString());
-
         // Convert touched position to hex coords.
         HexCoordinates coordinates = HexCoordinates.FromPosition(position);
 
-        Debug.Log("touched at " + coordinates.ToString());
-
+        // Index of the cell that was touched.
+        // Need to add x offset z/2.
         int index = coordinates.X + coordinates.Z * width + coordinates.Z / 2;
         HexCell cell = cells[index];
         cell.color = touchedColor;

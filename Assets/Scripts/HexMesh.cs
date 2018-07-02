@@ -22,6 +22,7 @@ public class HexMesh : MonoBehaviour {
         meshCollider = gameObject.AddComponent<MeshCollider>();
         hexMesh.name = "Hex Mesh";
         vertices = new List<Vector3>();
+        // Keep track of each cell's color so we can assign them.
         colors = new List<Color>();
         triangles = new List<int>();
 	}
@@ -38,6 +39,7 @@ public class HexMesh : MonoBehaviour {
             Triangulate(cells[i]);
         }
         hexMesh.vertices = vertices.ToArray();
+        // Store list of colors in the mesh, so triangles can refer to list.    
         hexMesh.colors = colors.ToArray();
         hexMesh.triangles = triangles.ToArray();
         hexMesh.RecalculateNormals();
@@ -71,6 +73,7 @@ public class HexMesh : MonoBehaviour {
         triangles.Add(vertexIndex + 2);
     }
 
+    // Each triangle needs 3 vertex colors added, one per vertex.
     void AddTriangleColor(Color color) {
         colors.Add(color);
         colors.Add(color);
