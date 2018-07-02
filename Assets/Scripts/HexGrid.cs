@@ -62,4 +62,25 @@ public class HexGrid : MonoBehaviour {
 	void Start() {
         hexMesh.Triangulate(cells);
 	}
+
+	void Update() {
+        if (Input.GetMouseButton(0)) {
+            HandleInput();
+        }
+	}
+
+    // See which cell was clicked on.
+    void HandleInput() {
+        Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(inputRay, out hit)) {
+            TouchCell(hit.point);
+        }
+    }
+
+    void TouchCell(Vector3 position) {
+        // Transform position from world space to local space.
+        position = transform.InverseTransformPoint(position);
+        Debug.Log("touched at " + position);
+    }
 }

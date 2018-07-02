@@ -12,8 +12,12 @@ public class HexMesh : MonoBehaviour {
     List<Vector3> vertices;
     List<int> triangles;
 
+    // For click raycast to hit.
+    MeshCollider meshCollider;
+
 	void Awake() {
         GetComponent<MeshFilter>().mesh = hexMesh = new Mesh();
+        meshCollider = gameObject.AddComponent<MeshCollider>();
         hexMesh.name = "Hex Mesh";
         vertices = new List<Vector3>();
         triangles = new List<int>();
@@ -32,6 +36,9 @@ public class HexMesh : MonoBehaviour {
         hexMesh.vertices = vertices.ToArray();
         hexMesh.triangles = triangles.ToArray();
         hexMesh.RecalculateNormals();
+
+        // Also use the mesh for the collider.
+        meshCollider.sharedMesh = hexMesh;
     }
 
     // Create triangles for a single cell.

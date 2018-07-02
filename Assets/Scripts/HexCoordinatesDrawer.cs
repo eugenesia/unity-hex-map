@@ -16,6 +16,7 @@ public class HexCoordinatesDrawer : PropertyDrawer {
             property.FindPropertyRelative("z").intValue
         );
 
+        // Set field name in left column.
         // Return an adjusted rectangle matching the space to right of label.
         position = EditorGUI.PrefixLabel(position, label);
 
