@@ -1,5 +1,6 @@
 ﻿/**
- * Convert coordinate systems.
+ * Axial coordinates for a cell, and useful functions for converting
+ * from offset coordinates.
  */
 using UnityEngine;
 
@@ -18,7 +19,8 @@ public struct HexCoordinates {
 
     // Convert offset coords to hex coords.
     public static HexCoordinates FromOffsetCoordinates (int x, int z) {
-        return new HexCoordinates(x, z);
+        // x: undo horizontal offset in offset coords.
+        return new HexCoordinates(x - z / 2, z);
     }
 
 	public override string ToString() {
