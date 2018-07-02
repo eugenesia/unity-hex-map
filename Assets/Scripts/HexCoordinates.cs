@@ -55,9 +55,13 @@ public struct HexCoordinates {
 
     // Convert touch position to hex coords so we know which cell was touched.
     public static HexCoordinates FromPosition(Vector3 position) {
+
+        // Get hex coords if we were on bottom row (z = 0).
         float x = position.x / (HexMetrics.innerRadius * 2f);
         float y = -x;
 
+        // Every 2 rows we move up, x and y decrease by one.
+        // outerRadius x 3 == height of 2 rows
         float offset = position.z / (HexMetrics.outerRadius * 3f);
         x -= offset;
         y -= offset;
