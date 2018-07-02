@@ -52,4 +52,24 @@ public struct HexCoordinates {
     public string ToStringOnSeparateLines() {
         return X.ToString() + "\n" + Y.ToString() + "\n" + Z.ToString();
     }
+
+    // Convert touch position to hex coords so we know which cell was touched.
+    public static HexCoordinates FromPosition(Vector3 position) {
+        float x = position.x / (HexMetrics.innerRadius * 2f);
+        float y = -x;
+
+        float offset = position.z / (HexMetrics.outerRadius * 3f);
+        x -= offset;
+        y -= offset;
+
+        int iX = Mathf.RoundToInt(x);
+        int iY = Mathf.RoundToInt(y);
+        int iZ = Mathf.RoundToInt(-x - y);
+
+        if (iX + iY + iZ != 0) {
+            Debug.LogWarning("rounding error!");
+        }
+
+        return new HexCoordinates(iX, iZ);
+    }
 }

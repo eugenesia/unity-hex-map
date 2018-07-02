@@ -81,6 +81,11 @@ public class HexGrid : MonoBehaviour {
     void TouchCell(Vector3 position) {
         // Transform position from world space to local space.
         position = transform.InverseTransformPoint(position);
-        Debug.Log("touched at " + position);
+        Debug.Log("Touched position: " + position.ToString());
+
+        // Convert touched position to hex coords.
+        HexCoordinates coordinates = HexCoordinates.FromPosition(position);
+
+        Debug.Log("touched at " + coordinates.ToString());
     }
 }
